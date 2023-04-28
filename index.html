@@ -187,6 +187,7 @@
 	});
 		
 	$('.back2form').on("click",function(e){
+		e.preventDefault();
 		$('input').val();
 		$('.final').fadeOut();
 		$('.final').fadeIn();	
