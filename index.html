@@ -395,6 +395,16 @@
 		e.preventDefault();
 		location.href="https://e-bikefestival.dei.gr";	
 	});
+		
+	$('.terms-modal').on("click",function(e){
+		e.preventDefault();
+		$('.modal-content').fadeIn();
+	});	
+		
+	$('.close').on("click",function(e){
+		e.preventDefault();
+		$('.modal-content').fadeOut();
+	});	
 	
 	</script>
 </body>
