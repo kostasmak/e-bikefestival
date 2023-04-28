@@ -25,6 +25,7 @@
       margin: 20px auto;
      display: block;
      max-width: 50%;
+	 padding-top: 16vh;
     }
 
     h2 {
@@ -32,7 +33,7 @@
       color: #ffffff;
       font-weight: 400;
       font-family: Ping LCG;
-      margin: 0 auto;
+      margin: 20px auto;
       width: 60%;
     }
     p {
@@ -42,14 +43,129 @@
       margin: 20px auto;
       font-family: Segoe UI;
     }
-      </style>
+	button {
+		margin: 20px auto;
+		width: 40%;
+		background-color: #008A25;
+		border-radius: 400px;
+		padding: 50px 80px;
+		font-size: 60px;
+		font-weight: 600;
+		font-family: Ping LCG;
+		border: 2px solid #ffffff;
+		color: #ffffff;
+	}
+	
+	.form, .final, .form1, .form2, .form3, .form4, .arrow-right, .arrow-left {
+		display: none;
+	}
+	
+	.arrow-right {
+	    position: absolute;
+		top: calc(55vh - 10vw);
+		width: 10vw;
+		right: 50px;
+	}
+	
+	.arrow-left {
+	    position: absolute;
+		top: calc(55vh - 10vw);
+		width: 10vw;
+		left: 50px;
+	}
+	
+	input {
+			margin: 20px auto;
+		width: 40%;
+		background-color: #ffffff;
+		border-radius: 400px;
+		padding: 50px 80px;
+		font-size: 40px;
+		font-weight: 400;
+		font-family: Ping LCG;
+		border: 2px solid #ffffff;
+		color: #BBBBBB;
+	}
+	.form img.logo {
+      margin: 20px auto;
+     display: block;
+     max-width: 30%;
+	 padding-top: 6vh;
+    }
+    </style>
 </head>
 
 <body>
-  <img src="img/logo.png" class="logo" />
-  <h2>Η ΔΕΗ σου κάνει δώρο ένα e-bike αξίας 1.000€!</h2>
-  <p>Γνώρισε από κοντά τα πιο νέα μοντέλα ηλεκτρικών ποδηλάτων 
-    και μπες στην κλήρωση, για να κάνεις ένα e-bike δικό σου!</p>
-  
+	<div class="start container">
+	  <img src="img/logo.png" class="logo" />
+	  <h2>Η ΔΕΗ σου κάνει δώρο ένα e-bike αξίας 1.000€!</h2>
+	  <p>Γνώρισε από κοντά τα πιο νέα μοντέλα ηλεκτρικών ποδηλάτων 
+		και μπες στην κλήρωση, για να κάνεις ένα e-bike δικό σου!</p>
+	  <button class="startbtn">Εναρξη</button>
+	</div>
+	
+	<div class="form container">
+		<img src="img/logo.png" class="logo" />
+		<h2>Συμπλήρωσε τα παρακάτω πεδία</h2>
+		
+		<div class="form1">
+			<form method="post">
+				<input type="text" name="firstname" placeholder="Όνομα*" /><br><br>
+				<input type="text" name="lastname"  placeholder="Επώνυμο*" />
+		</div>
+		
+		<div class="form2">
+				<input type="text" name="street" placeholder="Οδός*" style="width:25%; margin-right: 20px;"  />&nbsp;<input type="text" name="streetno" placeholder="Αριθμός*" style="width: 10%;" /><br><br>
+				<input type="text" name="area" placeholder="Περιοχή*" />				
+		</div>
+		
+		<div class="form3">
+				<input type="text" name="email" placeholder="Email*" /><br><br>
+				<input type="text" name="mobile" placeholder="Κινητό*" style="width:18%; margin-right: 20px;"  />&nbsp;<input type="text" name="phone" placeholder="Σταθερό" style="width:18%;"  />
+		</div>
+		
+		<div class="form4">
+			<button class="submitbtn">Yποβολή Συμμετοχής</button>
+		</div>
+		
+		<img class="arrow-right" src="img/arrow-right.png" /><br><br>
+		<img class="arrow-left" src="img/arrow-left.png" />
+		
+	</div>
+	
+	<div class="final container">
+		<img src="img/logo.png" class="logo" />
+	  <h2>Ευχαριστούμε για τη συμμετοχή σου.</h2>
+	  <h3>Καλή επιτυχία!</h3>	  
+	  <button class="back2form">Επιστροφή</button>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+	
+	<script>
+	var page=0;
+	$('.startbtn').on("click",function(){
+		$('.start').fadeOut();
+		$('.form').fadeIn();
+		$('.form1').fadeIn();
+		$('.arrow-right').fadeIn();
+		page=1;
+	});
+	
+	$('.arrow-right').on("click",function(){
+		$('.form'+page).fadeOut();
+		if (page===1) $('.arrow-left').fadeIn();
+		page=page+1;
+		$('.form'+page).fadeIn();
+	});
+	
+	$('.arrow-left').on("click",function(){
+		$('.form'+page).fadeOut();
+		page=page-1;
+		$('.form'+page).fadeIn();
+		if (page===1) $(this).fadeOut();
+	});
+	
+	</script>
 </body>
 </html>
