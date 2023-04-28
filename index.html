@@ -96,6 +96,9 @@
 	  .error {
 		border: 2px solid #FF0000;	  
 	  }
+	  .form4 span {
+	  	font-size:bold;
+	  }
     </style>
 </head>
 
@@ -136,9 +139,9 @@
 			<p>Email: <span class="email-val"></span></p>
 			<p>Σταθερό: <span class="phone-val"></span></p>
 			<p>Κινητό : <span class="mobile-val"></span></p>
-			<p><input type="checkbox" id="terms" name="terms">
+			<p><input type="checkbox" id="terms" name="terms" style="width: 40px; transform: scale(2);">
 			<label for="terms">Διάβασα και αποδέχομαι τους <span href="" class="terms-modal">Όρους και Προϋποθέσεις του διαγωνισμού</span></label></p>
-			<button class="submitbtn">Yποβολή Συμμετοχής</button>
+			<button class="submitbtn" style="font-size:50px;">Yποβολή Συμμετοχής</button>
 		</div>
 		
 		<img class="arrow-right" src="img/arrow-right.png" /><br><br>
@@ -176,6 +179,8 @@
 			if ($('#lastname').val().length<3) { $('#lastname').addClass('error'); error++; }
 			
 			if(error===0) {
+				$('.firstname-val').html($('#firstname').val());
+				$('.lastname-val').html($('#lastname').val());
 				$('.form'+page).fadeOut();
 				$('.arrow-left').fadeIn();				
 				page=page+1;
@@ -187,6 +192,9 @@
 			if ($('#area').val().length<1) { $('#area').addClass('error'); error++; }
 						
 			if(error===0) {		
+				$('.street-val').html($('#street').val());
+				$('.streetno-val').html($('#streetno').val());
+				$('.area-val').html($('#area').val());
 				$('.form'+page).fadeOut();
 				page=page+1;
 				$('.form'+page).fadeIn();
@@ -196,7 +204,10 @@
 			if ($('#mobile').val().length<10) { $('#mobile').addClass('error'); error++; }
 			if ($('#phone').val().length<10) { $('#phone').addClass('error'); error++; }
 			
-			if(error===0) {			
+			if(error===0) {		
+				$('.email-val').html($('#email').val());
+				$('.mobile-val').html($('#mobile').val());
+				$('.phone-val').html($('#phone').val());
 				$('.form'+page).fadeOut();
 				page=page+1;
 				$('.form'+page).fadeIn();
