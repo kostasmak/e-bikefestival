@@ -88,16 +88,19 @@
 		color: #BBBBBB;
 	}
 	.form img.logo {
-      margin: 20px auto;
-     display: block;
-     max-width: 30%;
-	 padding-top: 6vh;
-    }
+	      margin: 20px auto;
+	     display: block;
+	     max-width: 30%;
+		 padding-top: 6vh;
+	    }
 	  .error {
 		border: 2px solid #FF0000;	  
 	  }
 	  .form4 span {
 	  	font-weight:bold;
+	  }
+	  label {
+		font-size: 25px;	  
 	  }
     </style>
 </head>
@@ -207,6 +210,7 @@
 				$('.mobile-val').html($('#mobile').val());
 				$('.phone-val').html($('#phone').val());
 				$('.form'+page).fadeOut();
+				$('.form h2').fadeOut();
 				page=page+1;
 				$('.form'+page).fadeIn();
 			}
