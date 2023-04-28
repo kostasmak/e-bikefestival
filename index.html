@@ -109,23 +109,23 @@
 		<h2>Συμπλήρωσε τα παρακάτω πεδία</h2>
 		
 		<div class="form1">
-			<form name="participation" method="POST" data-netlify="true">
-				<input type="text" name="firstname" placeholder="Όνομα*" /><br><br>
-				<input type="text" name="lastname"  placeholder="Επώνυμο*" />
+			<form method="post">
+				<input type="text" name="firstname" id="firstname" placeholder="Όνομα*" /><br><br>
+				<input type="text" name="lastname" id="lastname"  placeholder="Επώνυμο*" />
 		</div>
 		
 		<div class="form2">
-				<input type="text" name="street" placeholder="Οδός*" style="width:25%; margin-right: 20px;"  />&nbsp;<input type="text" name="streetno" placeholder="Αριθμός*" style="width: 10%;" /><br><br>
-				<input type="text" name="area" placeholder="Περιοχή*" />				
+				<input type="text" name="street" id="street" placeholder="Οδός*" style="width:25%; margin-right: 20px;"  />&nbsp;<input type="text" name="streetno" id="streetno" placeholder="Αριθμός*" style="width: 10%;" /><br><br>
+				<input type="text" name="area" id="area" placeholder="Περιοχή*" />				
 		</div>
 		
 		<div class="form3">
-				<input type="text" name="email" placeholder="Email*" /><br><br>
-				<input type="text" name="mobile" placeholder="Κινητό*" style="width:18%; margin-right: 20px;"  />&nbsp;<input type="text" name="phone" placeholder="Σταθερό" style="width:18%;"  />
+				<input type="text" name="email" id="email" placeholder="Email*" /><br><br>
+				<input type="text" name="mobile" id="mobile" placeholder="Κινητό*" style="width:18%; margin-right: 20px;"  />&nbsp;<input type="text" name="phone" id="phone" placeholder="Σταθερό" style="width:18%;"  />
 		</div>
 		
 		<div class="form4">
-			<button type="submit" class="submitbtn">Yποβολή Συμμετοχής</button>
+			<button class="submitbtn">Yποβολή Συμμετοχής</button>
 		</div>
 		
 		<img class="arrow-right" src="img/arrow-right.png" /><br><br>
@@ -154,7 +154,14 @@
 	
 	$('.arrow-right').on("click",function(){
 		$('.form'+page).fadeOut();
-		if (page===1) $('.arrow-left').fadeIn();
+		if (page===1)  {
+			$('.arrow-left').fadeIn();
+			
+		} else if (page===2)  {
+			
+		} else if (page===3)  {
+		
+		}
 		page=page+1;
 		$('.form'+page).fadeIn();
 	});
@@ -164,6 +171,19 @@
 		page=page-1;
 		$('.form'+page).fadeIn();
 		if (page===1) $(this).fadeOut();
+	});
+	
+	$('.submitbtn').on("click",function(e){
+		e.preventDefault();
+		$.ajax({
+			type: "POST",
+			url: 'https://clients.tribalddb.gr/DEH/ebike/data.php',
+			data: "firstname="+$('#firstname').val()+"&lastname="+$('#lastname').val()+"&street="+$('#street').val()+"&streetno="+$('#streetno').val()+"&area="+$('#area').val()+"&email="+$('#email').val()+"&mobile="+$('#mobile').val()+"&phone="+$('#phone').val(),
+			success: function(data){ 
+				$('.form').fadeOut();
+				$('.final').fadeIn();				
+			}
+		});
 	});
 	
 	</script>
