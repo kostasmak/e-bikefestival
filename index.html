@@ -7,6 +7,7 @@
   <meta content="telephone=no" name="format-detection" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex,nofollow">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
@@ -92,6 +93,9 @@
      max-width: 30%;
 	 padding-top: 6vh;
     }
+	  .error {
+		border: 2px solid #FF0000;	  
+	  }
     </style>
 </head>
 
@@ -116,7 +120,7 @@
 		
 		<div class="form2">
 				<input type="text" name="street" id="street" placeholder="Οδός*" style="width:25%; margin-right: 20px;"  />&nbsp;<input type="text" name="streetno" id="streetno" placeholder="Αριθμός*" style="width: 10%;" /><br><br>
-				<input type="text" name="area" id="area" placeholder="Περιοχή*" />				
+				<input type="text" name="area" id="area" placeholder="Πόλη*" />				
 		</div>
 		
 		<div class="form3">
@@ -125,6 +129,15 @@
 		</div>
 		
 		<div class="form4">
+			<h2>Έλεγξε τα στοιχεία σου </h2>
+			<p>Όνομα: <span class="firstname-val"></span></p>
+			<p>Επίθετο: <span class="lastname-val"></span></p>
+			<p>Διεύθυνση (οδό, αριθμό, πόλη): <span class="address-val"></span></p>
+			<p>Email: <span class="email-val"></span></p>
+			<p>Σταθερό: <span class="phone-val"></span></p>
+			<p>Κινητό : <span class="mobile-val"></span></p>
+			<p><input type="checkbox" id="terms" name="terms">
+			<label for="terms">Διάβασα και αποδέχομαι τους <span href="" class="terms-modal">Όρους και Προϋποθέσεις του διαγωνισμού</span></label></p>
 			<button class="submitbtn">Yποβολή Συμμετοχής</button>
 		</div>
 		
@@ -152,18 +165,43 @@
 		page=1;
 	});
 	
-	$('.arrow-right').on("click",function(){
-		$('.form'+page).fadeOut();
-		if (page===1)  {
-			$('.arrow-left').fadeIn();
+	var error = 0;
+	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	
+	$('.arrow-right').on("click",function(){		
+		error = 0;
+		$(":input").removeClass('error');
+		if (page===1)  {			
+			if ($('#firstname').val().length<3) { $('#firstname').addClass('error'); error++; }
+			if ($('#lastname').val().length<3) { $('#lastname').addClass('error'); error++; }
 			
+			if(error===0) {
+				$('.form'+page).fadeOut();
+				$('.arrow-left').fadeIn();				
+				page=page+1;
+				$('.form'+page).fadeIn();
+			}			
 		} else if (page===2)  {
-			
+			if ($('#street').val().length<3) { $('#street').addClass('error'); error++; }
+			if ($('#streetno').val().length<1) { $('#streetno').addClass('error'); error++; }
+			if ($('#area').val().length<1) { $('#area').addClass('error'); error++; }
+						
+			if(error===0) {		
+				$('.form'+page).fadeOut();
+				page=page+1;
+				$('.form'+page).fadeIn();
+			}
 		} else if (page===3)  {
-		
+			if (!$('#email').val().match(validRegex)) { $('#email').addClass('error'); error++; }
+			if ($('#mobile').val().length<10) { $('#mobile').addClass('error'); error++; }
+			if ($('#phone').val().length<10) { $('#phone').addClass('error'); error++; }
+			
+			if(error===0) {			
+				$('.form'+page).fadeOut();
+				page=page+1;
+				$('.form'+page).fadeIn();
+			}
 		}
-		page=page+1;
-		$('.form'+page).fadeIn();
 	});
 	
 	$('.arrow-left').on("click",function(){
@@ -175,15 +213,17 @@
 	
 	$('.submitbtn').on("click",function(e){
 		e.preventDefault();
-		$.ajax({
-			type: "POST",
-			url: 'https://clients.tribalddb.gr/DEH/ebike/data.php',
-			data: "firstname="+$('#firstname').val()+"&lastname="+$('#lastname').val()+"&street="+$('#street').val()+"&streetno="+$('#streetno').val()+"&area="+$('#area').val()+"&email="+$('#email').val()+"&mobile="+$('#mobile').val()+"&phone="+$('#phone').val(),
-			success: function(data){ 
-				$('.form').fadeOut();
-				$('.final').fadeIn();				
-			}
-		});
+		if ($('#terms').is(':checked')) {
+			$.ajax({
+				type: "POST",
+				url: 'https://clients.tribalddb.gr/DEH/ebike/data.php',
+				data: "firstname="+$('#firstname').val()+"&lastname="+$('#lastname').val()+"&street="+$('#street').val()+"&streetno="+$('#streetno').val()+"&area="+$('#area').val()+"&email="+$('#email').val()+"&mobile="+$('#mobile').val()+"&phone="+$('#phone').val(),
+				success: function(data){ 
+					$('.form').fadeOut();
+					$('.final').fadeIn();				
+				}
+			});
+		}
 	});
 		
 	$('.back2form').on("click",function(e){
