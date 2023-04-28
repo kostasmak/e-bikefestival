@@ -136,7 +136,7 @@
 	<div class="final container">
 		<img src="img/logo.png" class="logo" />
 	  <h2>Ευχαριστούμε για τη συμμετοχή σου.</h2>
-	  <h3>Καλή επιτυχία!</h3>	  
+	  <h2>Καλή επιτυχία!</h2>	  
 	  <button class="back2form">Επιστροφή</button>
 	</div>
 	
@@ -184,6 +184,12 @@
 				$('.final').fadeIn();				
 			}
 		});
+	});
+		
+	$('.submitbtn').on("click",function(e){
+		$('input').val();
+		$('.final').fadeOut();
+		$('.final').fadeIn();	
 	});
 	
 	</script>
