@@ -97,7 +97,7 @@
 		border: 2px solid #FF0000;	  
 	  }
 	  .form4 span {
-	  	font-size:bold;
+	  	font-weight:bold;
 	  }
     </style>
 </head>
@@ -192,9 +192,7 @@
 			if ($('#area').val().length<1) { $('#area').addClass('error'); error++; }
 						
 			if(error===0) {		
-				$('.street-val').html($('#street').val());
-				$('.streetno-val').html($('#streetno').val());
-				$('.area-val').html($('#area').val());
+				$('.address-val').html($('#street').val()+' '+$('#streetno').val()+', '+$('#area').val());
 				$('.form'+page).fadeOut();
 				page=page+1;
 				$('.form'+page).fadeIn();
