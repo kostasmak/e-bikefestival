@@ -395,6 +395,8 @@
 					$('.final').fadeIn();				
 				}
 			});
+		} else {
+			 $('label').css('color', '#FF0000');
 		}
 	});
 		
@@ -405,7 +407,7 @@
 		
 	$('.terms-modal').on("click",function(e){
 		e.preventDefault();
-		$('.termsModal').fadeIn();
+		$('#termsModal').fadeIn();
 	});	
 		
 	$('.close').on("click",function(e){
