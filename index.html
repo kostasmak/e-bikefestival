@@ -22,6 +22,9 @@
     overflow: hidden;
     text-align: center;
     }
+  .container {
+	  display:none;
+  }
   img.logo {
       margin: 20px auto;
      display: block;
@@ -414,12 +417,12 @@
 		if (page===1) $(this).fadeOut();
 	});
 	
-	$('.submitbtn').on("click",function(e){
+	/*$('.submitbtn').on("click",function(e){
 		e.preventDefault();
 		if ($('#terms').is(':checked')) {
 			$.ajax({
 				type: "POST",
-				url: 'https://clients.tribalddb.gr/DEH/ebike/data.php',
+				url: 'https://clients.tribalddb.gr/DEH/ebike/',
 				data: "firstname="+$('#firstname').val()+"&lastname="+$('#lastname').val()+"&street="+$('#street').val()+"&streetno="+$('#streetno').val()+"&area="+$('#area').val()+"&email="+$('#email').val()+"&mobile="+$('#mobile').val()+"&phone="+$('#phone').val(),
 				success: function(data){ 
 					$('.form').fadeOut();
@@ -429,7 +432,7 @@
 		} else {
 			 $('label').css('color', '#FF0000');
 		}
-	});
+	});*/
 		
 	$('.back2form').on("click",function(e){
 		e.preventDefault();
