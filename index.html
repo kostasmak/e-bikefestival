@@ -242,7 +242,7 @@
 			<p>Κινητό : <span class="mobile-val"></span></p>
 			<p><input type="checkbox" id="terms" name="terms" style="width: 40px; transform: scale(2);">
 			<label for="terms">Διάβασα και αποδέχομαι τους <a href="" class="terms-modal">Όρους και Προϋποθέσεις του διαγωνισμού</span></a></p>
-			<!--button class="submitbtn" style="font-size:50px;">Yποβολή Συμμετοχής</button-->
+			<button class="submitbtn" style="font-size:50px;">Yποβολή Συμμετοχής</button>
 		</div>
 		
 		<img class="arrow-right" src="img/arrow-right.png" /><br><br>
@@ -967,7 +967,7 @@
 		if (page===1) $(this).fadeOut();
 	});
 	
-	/*$('.submitbtn').on("click",function(e){
+	$('.submitbtn').on("click",function(e){
 		e.preventDefault();
 		if ($('#terms').is(':checked')) {
 			$.ajax({
@@ -982,7 +982,7 @@
 		} else {
 			 $('label').css('color', '#FF0000');
 		}
-	});*/
+	});
 		
 	$('.back2form').on("click",function(e){
 		e.preventDefault();
